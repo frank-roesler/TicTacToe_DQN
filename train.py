@@ -13,20 +13,21 @@ model2 = copy.deepcopy(model)
 model2.load_state_dict(model.state_dict())
 
 loss_fn = torch.nn.MSELoss()
-learning_rate = 1e-4
+learning_rate = 5e-5
 optimizer = torch.optim.Adam(model.parameters(), lr = learning_rate)
 
 ttt = TicTacToe(mode='PvM')
 
 params = {
-    'epsilon': 0.01,
+    'epsilon': 0.005,
     'gamma': 0.99,
-    'epochs': 6501,
+    'epochs': 12501,
     'batch_size': 500,
     'sync_freq': 500,
+    'mem_size': 1000
 }
 
-replay = ExperienceReplay(mem_size=1000, batch_size=params['batch_size'])
+replay = ExperienceReplay(mem_size=params['mem_size'], batch_size=params['batch_size'])
 logger = Logger()
 fig, ax = plt.subplots(2,2, constrained_layout=True, figsize = (10,8))
 model.train()
@@ -35,7 +36,7 @@ train(model, model2, replay, loss_fn, optimizer, ax=ax, logger=logger, env=ttt, 
 
 print(np.mean(logger.game_outcomes[-1000:-1]))
 # torch.save(model.state_dict(), 'state_dict_trained')
-plot_losses(ax,logger.losses,logger.tot_rewards,logger.m_lost_games,logger.m_outcomes,params['epochs'],smoothing_window=10)
+plot_losses(ax,logger.losses,logger.tot_rewards,logger.m_lost_games,logger.m_outcomes,params['epochs'],smoothing_window=100)
 plt.show()
 
 
