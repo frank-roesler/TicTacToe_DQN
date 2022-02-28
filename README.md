@@ -4,3 +4,5 @@ The repo includes the environment (the TicTacToe game) as well as the DQN traini
 To stabilize training, the bare DQN training loop is supplemented with Experience Replay and a Target Network (see [Lin, L. J. (1992)]).
 
 To train the model, download the contents of the repo and run the `train.py` script. On a modern laptop (without GPU) training should take a couple of minutes. The `test.py` script allows the user to play against the trained network. Note that as it is only trained against a random opponent, it cannot be expected to reach human level proficiency.
+
+Any comments or queries are welcome at https://frank-roesler.github.io/contact/
