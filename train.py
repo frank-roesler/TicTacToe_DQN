@@ -34,7 +34,7 @@ model.train()
 train(model, model2, replay, loss_fn, optimizer, ax=ax, logger=logger, env=ttt, **params)
 
 print(np.mean(logger.game_outcomes[-1000:-1]))
-torch.save(model.state_dict(), 'state_dict_trained')
+# torch.save(model.state_dict(), 'state_dict_trained')
 plot_losses(ax,logger.losses,logger.tot_rewards,logger.m_lost_games,logger.m_outcomes,params['epochs'],smoothing_window=10)
 plt.show()
 
